@@ -1,0 +1,22 @@
+<div ibmGrid>
+    <div ibmRow>
+        <div ibmCol [columnNumbers]="{'md': 8}">
+            <h4>Empresas</h4>
+            <p style="font-size: 14px;">Listas de empresas registradas por mayorista</p>
+            <ibm-table-container style="margin: 20px 0px;">
+                <ibm-table-header>
+                    <h4 ibmTableHeaderTitle>Tabla de Empresas</h4>
+                    <p ibmTableHeaderDescription>Visualize, ordene y modifique la información de la tabla</p>
+                </ibm-table-header>
+                <ibm-table [model]="simpleModel" [size]="size" [showSelectionColumn]="false">
+                </ibm-table>
+                <ng-template #customItemTemplate let-data="data">
+                    <i><a [routerLink]="data.link">{{data.name}}</a></i>
+                </ng-template>
+                <ng-template #tagsTemplate let-data="data">
+                    <ibm-tag type="blue" *ngFor="let tag of data.tags">{{ tag.nombre }}</ibm-tag>
+                </ng-template>
+            </ibm-table-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div ibmGrid [condensed]="false">
+    <div ibmRow [condensed]="false">
+        <div ibmCol [columnNumbers]="{'md': 3, 'sm': 8}" style="margin: auto;">
+            <div style="margin-bottom: 20px;">
+                <h4>Empresas</h4>
+                <p style="font-size: 14px;">Listas de empresas registradas por mayorista</p>
+            </div>
+            <form [formGroup]="form" (submit)="onSubmit();">
+                <div class="form-item" style="margin-bottom: 1.5rem;">
+                    <ibm-label>
+                        Nombre de la empresa
+                        <input ibmText [autocomplete]="false" formControlName="nombre" autofocus>
+                    </ibm-label>
+                </div>
+                <div class="form-item" style="margin-bottom: 1.5rem;">
+                    <ibm-label>
+                        RUC
+                        <input ibmText [autocomplete]="false" formControlName="ruc">
+                    </ibm-label>
+                </div>
+
+                <div class="form-item" style="margin-bottom: 1.5rem;">
+                    <div>
+                        <h6 style="margin: 5px 0; ">Tipo de Negocio: </h6>
+                        <ibm-inline-loading 
+                            *ngIf="loading"
+                            [isActive]="isActive"
+                            loadingText="Cargando datos...">
+                        </ibm-inline-loading>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr;" formArrayName="tags" *ngIf="!loading">
+                            <div *ngFor="let tag of tags.controls; let idx=index;">
+                                <div [formGroupName]="idx">
+                                    <input type="hidden" value="tag.tagId" formControlName="tagId">
+                                    <ibm-checkbox formControlName="selected">
+                                        {{ getValueOfArray(idx, 'nombre') }}
+                                    </ibm-checkbox>
+                                </div>
+                            </div>
+                            <button class="btn-link">+ Agregar Nuevo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <button type="submit" [ibmButton]="ibmButton" [size]="size">Registrar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

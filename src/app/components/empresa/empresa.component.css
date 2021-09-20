@@ -1,0 +1,15 @@
+.btn-link{
+    display: flex;
+    background-color: transparent;
+    color: dodgerblue;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.btn-link:hover{
+    text-decoration: underline;
+}
